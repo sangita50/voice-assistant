@@ -4,11 +4,11 @@ import { fileURLToPath } from "url";
 import { dirname } from "path";
 import path from "path";
 import OpenAI from "openai";
-import cors from 'cors';
+// import cors from 'cors';
 
 
 const app = express();
-app.use(cors());
+// app.use(cors());
 // this part may raise error is executed in different environment
 const __filename = fileURLToPath(import.meta.url);
 const __dirname1 = dirname(__filename);
@@ -27,7 +27,7 @@ async function main(input) {
     model: "mistralai/Mistral-7B-Instruct-v0.1",
     messages: messages,
     temperature: 0.1,
-    // max_tokens: 100,
+    max_tokens: 200,
   });
   console.log("dummy message");
   return completion.choices[0]?.message?.content;

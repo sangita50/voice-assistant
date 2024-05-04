@@ -88,43 +88,45 @@
       crossorigin="anonymous"></script>
     <script>
         async function postData(url = "", data = {}) { 
-            const response = await fetch(url, {
-            method: "POST", 
-            mode: "cors", 
-            cache: "no-cache", 
-            credentials: "same-origin",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            redirect: "follow", 
-            referrerPolicy: "no-referrer", 
-            body: JSON.stringify(data), 
-            });
-            console.log(response);
-            return response.json(); 
+            // const response = await fetch(url, {
+            // method: "POST", 
+            // mode: "cors", 
+            // cache: "no-cache", 
+            // credentials: "same-origin",
+            // headers: {
+            //     "Content-Type": "application/json",
+            // },
+            // redirect: "follow", 
+            // referrerPolicy: "no-referrer", 
+            // body: JSON.stringify(data), 
+            // });
+            // console.log(response);
+            // return response.json(); 
 
-            // try {
-            //     const response = await fetch(url, {
-            //         method: "POST",
-            //         mode: "cors",
-            //         cache: "no-cache",
-            //         credentials: "same-origin",
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //         },
-            //         redirect: "follow",
-            //         referrerPolicy: "no-referrer",
-            //         body: JSON.stringify(data),
-            //     });
-            //     if (!response.ok) {
-            //         console.log("HTTP error", response.status, response.statusText);
-            //         return null; // Handle error as needed
-            //     }
-            //     return await response.json();
-            // } catch (error) {
-            //     console.log("Error in postData:", error);
-            //     return null; // Return a default value or handle error
-            // }
+            try {
+                const response = await fetch(url, {
+                    method: "POST",
+                    mode: "cors",
+                    cache: "no-cache",
+                    credentials: "same-origin",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    redirect: "follow",
+                    referrerPolicy: "no-referrer",
+                    body: JSON.stringify(data),
+                });
+                if (!response.ok) {
+                    console.log("HTTP error", response.status, response.statusText);
+                    // return null; // Handle error as needed
+                }
+                const result = await response.json();
+                console.log("Success:", result);
+                // return await response.json();
+            } catch (error) {
+                console.log("Error in postData:", error);
+                // return null; // Return a default value or handle error
+            }
         }
       const populateUsingGpt = (input)=>{  
         postData("/api", { input: input }).then((data) => {
