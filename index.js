@@ -18,7 +18,7 @@ dotenv.config();
 const messages = [];
 const anyscale = new OpenAI({
   baseURL: "https://api.endpoints.anyscale.com/v1",
-  apiKey: process.env.API_KEY,
+  apiKey: 'esecret_i2gu4jzabcetf6513cp23xrdcv',
 });
 
 async function main(input) {
