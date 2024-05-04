@@ -100,7 +100,8 @@
             referrerPolicy: "no-referrer", 
             body: JSON.stringify(data), 
             });
-            return await response.json(); 
+            console.log(response);
+            return response.json(); 
 
             // try {
             //     const response = await fetch(url, {
