@@ -8,7 +8,7 @@ import cors from 'cors';
 
 
 const app = express();
-// app.use(cors({ origin: 'http://127.0.0.1:5500' }));
+app.use(cors());
 // this part may raise error is executed in different environment
 const __filename = fileURLToPath(import.meta.url);
 const __dirname1 = dirname(__filename);
