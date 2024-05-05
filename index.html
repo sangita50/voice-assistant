@@ -105,7 +105,7 @@
         }
 
       const populateUsingGpt = (input)=>{  
-        postData("/api", { input: input }).then((data) => {
+        postData("https://sparkling-concha-3e4816.netlify.app/api", { input: input }).then((data) => {
           document.querySelector(".chats").innerHTML = document.querySelector(".chats").innerHTML + `<div>Question: ${input}</div>
             <div>Answer: ${data.message}</div> 
         <hr>`
