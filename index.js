@@ -7,6 +7,10 @@ import OpenAI from "openai";
 // import cors from 'cors';
 
 
+import serverless from "serverless-http";
+const router = express.Router();
+
+
 const app = express();
 // app.use(cors());
 // this part may raise error is executed in different environment
@@ -36,18 +40,22 @@ async function main(input) {
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-app.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.sendFile(path.join(__dirname1, "index.html"));
 });
 
-app.post("/api", async function (req, res, next) {
+router.post("/api", async function (req, res, next) {
   console.log(req.body);
   const mes = await main(req.body.input);
   res.json({ success: true, message: mes });
 });
 
-app.listen(port, () => {
-  console.log("Running...");
-});
 
+app.use("/.netlify/functions/app", router);
+export default serverless(app);
+
+// app.listen(port, () => {
+  //   console.log("Running...");
+  // });
+  
 // "test": "echo \"Error: no test specified\" && exit 1"

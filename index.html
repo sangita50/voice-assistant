@@ -7,8 +7,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="styles.css">
+    
     <title>Voice Assisant</title>
     <style>
       .container {
@@ -43,7 +45,6 @@
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -52,8 +53,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Home</a>
           </li>
-
-
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -61,6 +60,7 @@
         </form>
       </div>
     </nav>
+
     <h1 class="text-center my-2 py-2"> Welcome To Voice GPT</h1>
     <div class="container py-12">
       <button id="start" type="button" class="btn btn-success mx-2">Start</button>
@@ -88,46 +88,22 @@
       crossorigin="anonymous"></script>
     <script>
         async function postData(url = "", data = {}) { 
-            // const response = await fetch(url, {
-            // method: "POST", 
-            // mode: "cors", 
-            // cache: "no-cache", 
-            // credentials: "same-origin",
-            // headers: {
-            //     "Content-Type": "application/json",
-            // },
-            // redirect: "follow", 
-            // referrerPolicy: "no-referrer", 
-            // body: JSON.stringify(data), 
-            // });
-            // console.log(response);
-            // return response.json(); 
-
-            try {
-                const response = await fetch(url, {
-                    method: "POST",
-                    mode: "cors",
-                    cache: "no-cache",
-                    credentials: "same-origin",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    redirect: "follow",
-                    referrerPolicy: "no-referrer",
-                    body: JSON.stringify(data),
-                });
-                if (!response.ok) {
-                    console.log("HTTP error", response.status, response.statusText);
-                    // return null; // Handle error as needed
-                }
-                const result = await response.json();
-                console.log("Success:", result);
-                // return await response.json();
-            } catch (error) {
-                console.log("Error in postData:", error);
-                // return null; // Return a default value or handle error
-            }
+            const response = await fetch(url, {
+            method: "POST", 
+            mode: "cors", 
+            cache: "no-cache", 
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            redirect: "follow", 
+            referrerPolicy: "no-referrer", 
+            body: JSON.stringify(data), 
+            });
+            console.log(response);
+            return response.json(); 
         }
+
       const populateUsingGpt = (input)=>{  
         postData("/api", { input: input }).then((data) => {
           document.querySelector(".chats").innerHTML = document.querySelector(".chats").innerHTML + `<div>Question: ${input}</div>
