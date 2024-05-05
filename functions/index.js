@@ -54,8 +54,8 @@ router.post("/api", async function (req, res, next) {
 app.use("/.netlify/functions/app", router);
 export default serverless(app);
 
-app.listen(port, () => {
-    console.log("Running...");
-  });
+// app.listen(port, () => {
+//     console.log("Running...");
+//   });
   
 // "test": "echo \"Error: no test specified\" && exit 1"
